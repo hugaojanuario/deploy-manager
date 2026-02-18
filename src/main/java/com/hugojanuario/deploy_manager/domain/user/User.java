@@ -28,7 +28,8 @@ public class User {
 
     private String password;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private RoleType roleType;
 
     @CreationTimestamp

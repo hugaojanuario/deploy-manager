@@ -1,5 +1,6 @@
 package com.hugojanuario.deploy_manager.domain.client;
 
+import com.hugojanuario.deploy_manager.domain.conection.Connection;
 import com.hugojanuario.deploy_manager.domain.version.Version;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Null;
@@ -10,6 +11,8 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -37,5 +40,9 @@ public class Client {
     @Column(updatable = false)
     private LocalDateTime createdAt;
 
-    
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Connection> connections = new ArrayList<>();
+
+
+
 }

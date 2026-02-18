@@ -6,7 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -24,7 +26,8 @@ public class Connection {
     @JoinColumn(name = "client_id", nullable = false, foreignKey = @ForeignKey(name = "fk_connection_client"))
     private Client client;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private ConnectionType connectionType;
 
     private String idRemoteConnection;
@@ -35,4 +38,8 @@ public class Connection {
 
     private String userDb;
     private String passwordDb;
+
+    @CreationTimestamp
+    @Column(updatable = false)
+    private LocalDateTime createdAt;
 }
