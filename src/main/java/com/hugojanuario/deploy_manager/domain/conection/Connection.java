@@ -1,10 +1,13 @@
 package com.hugojanuario.deploy_manager.domain.conection;
 
+import com.hugojanuario.deploy_manager.domain.client.Client;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.UUID;
 
 @Entity
 @Table(name = "connections")
@@ -14,12 +17,14 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Connection {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
-    @ManyToOne
-    private String client;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "client_id", nullable = false, foreignKey = @ForeignKey(name = "fk_connection_client"))
+    private Client client;
 
+    @Enumerated
     private ConnectionType connectionType;
 
     private String idRemoteConnection;

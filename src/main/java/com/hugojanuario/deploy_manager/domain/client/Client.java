@@ -2,12 +2,15 @@ package com.hugojanuario.deploy_manager.domain.client;
 
 import com.hugojanuario.deploy_manager.domain.version.Version;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Null;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Table(name="clients")
@@ -18,18 +21,20 @@ import java.time.LocalDateTime;
 public class Client {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     private String name;
     private String city;
     private String state;
     private String contact;
 
-    @ManyToOne
-    @JoinColumn(name = "version_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "version_id", nullable = false, foreignKey = @ForeignKey(name = "fk_client_version"))
     private Version actualVersion;
 
+    @CreationTimestamp
+    @Column(updatable = false)
     private LocalDateTime createdAt;
 
     
