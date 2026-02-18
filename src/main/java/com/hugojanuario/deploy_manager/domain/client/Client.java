@@ -1,5 +1,7 @@
 package com.hugojanuario.deploy_manager.domain.client;
 
+import com.hugojanuario.deploy_manager.domain.client.dto.ClientCreateRequest;
+import com.hugojanuario.deploy_manager.domain.client.dto.ClientUpdateRequest;
 import com.hugojanuario.deploy_manager.domain.conection.Connection;
 import com.hugojanuario.deploy_manager.domain.version.Version;
 import jakarta.persistence.*;
@@ -26,7 +28,6 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-
     private String name;
     private String city;
     private String state;
@@ -43,6 +44,18 @@ public class Client {
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Connection> connections = new ArrayList<>();
 
+    public Client(ClientCreateRequest client){
+        this.name = client.name();
+        this.city = client.city();
+        this.state = client.state();
+        this.contact = client.contact();
+        this.actualVersion = client.actualVersion();
+    }
+
+    public Client(ClientUpdateRequest clientUp){
+        this.contact = clientUp.contact();
+        this.actualVersion = clientUp.actualVersion();
+    }
 
 
 }
