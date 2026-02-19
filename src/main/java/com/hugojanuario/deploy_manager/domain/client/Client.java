@@ -28,6 +28,7 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+    @Column(nullable = false)
     private String name;
     private String city;
     private String state;
@@ -38,7 +39,7 @@ public class Client {
     private Version actualVersion;
 
     @CreationTimestamp
-    @Column(updatable = false)
+    @Column(updatable = false, nullable = false)
     private LocalDateTime createdAt;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -49,7 +50,7 @@ public class Client {
         this.city = client.city();
         this.state = client.state();
         this.contact = client.contact();
-        this.actualVersion = client.actualVersion();
+        this.actualVersion.getId();
     }
 
     public Client(ClientUpdateRequest clientUp){

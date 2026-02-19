@@ -11,7 +11,8 @@ public record ClientResponse(
         String city,
         String state,
         String contact,
-        Version actualVersion
+        UUID versionId,
+        String numberVersion
 ) {
     public ClientResponse(Client client){
         this(
@@ -20,7 +21,8 @@ public record ClientResponse(
                 client.getCity(),
                 client.getState(),
                 client.getContact(),
-                client.getActualVersion()
+                client.getActualVersion().getId(),
+                client.getActualVersion().getNumberVersion()
         );
     }
 }

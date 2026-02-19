@@ -1,9 +1,16 @@
 services:
-  postgres:
-    image: 'postgres:latest'
+  db:
+    image: postgres:15-alpine # Use a specific, lightweight version from Docker Hub
+    restart: always
     environment:
-      - 'POSTGRES_DB=mydatabase'
-      - 'POSTGRES_PASSWORD=secret'
-      - 'POSTGRES_USER=myuser'
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: postgres
     ports:
-      - '5432'
+      - "5432:5432" # Maps port 5432 on your host to the container's port 5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # Persist data in a named volume
+      # Optional: uncomment the line below to run initialization scripts
+      # - ./init-scripts:/docker-entrypoint-initdb.d
+volumes:
+  postgres_data:

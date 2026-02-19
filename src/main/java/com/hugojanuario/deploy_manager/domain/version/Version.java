@@ -31,7 +31,7 @@ public class Version {
     private String changelog;
 
     @CreationTimestamp
-    @Column(updatable = false)
+    @Column(updatable = false, nullable = false)
     private LocalDateTime createdAt;
 
 }
