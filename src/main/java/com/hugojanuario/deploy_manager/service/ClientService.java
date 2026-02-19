@@ -12,6 +12,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class ClientService {
@@ -39,5 +41,12 @@ public class ClientService {
 
     public Page<ClientResponse> findAllClients(Pageable pageable){
         return clientRepository.findAll(pageable).map(ClientResponse::new);
+    }
+
+    public ClientResponse findByIdClient(UUID id){
+        Client find = clientRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Client not found"));
+
+        return new ClientResponse(find);
     }
 }
