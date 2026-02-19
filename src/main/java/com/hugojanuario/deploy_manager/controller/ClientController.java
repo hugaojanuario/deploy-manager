@@ -1,6 +1,7 @@
 package com.hugojanuario.deploy_manager.controller;
 
 import com.hugojanuario.deploy_manager.domain.client.dto.ClientCreateRequest;
+import com.hugojanuario.deploy_manager.domain.client.dto.ClientUpdateRequest;
 import com.hugojanuario.deploy_manager.service.ClientService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -34,5 +35,11 @@ public class ClientController {
     public ResponseEntity findByIdClient(@PathVariable UUID id){
         var findById = clientService.findByIdClient(id);
         return ResponseEntity.ok(findById);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity updateClient(@PathVariable UUID id, @RequestBody @Valid ClientUpdateRequest clientUpdateRequest){
+        var upClient = clientService.updateClient(id, clientUpdateRequest);
+        return ResponseEntity.ok(upClient);
     }
 }

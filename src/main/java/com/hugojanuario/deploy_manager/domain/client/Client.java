@@ -1,11 +1,9 @@
 package com.hugojanuario.deploy_manager.domain.client;
 
-import com.hugojanuario.deploy_manager.domain.client.dto.ClientCreateRequest;
-import com.hugojanuario.deploy_manager.domain.client.dto.ClientUpdateRequest;
 import com.hugojanuario.deploy_manager.domain.conection.Connection;
 import com.hugojanuario.deploy_manager.domain.version.Version;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Null;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -44,19 +42,5 @@ public class Client {
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Connection> connections = new ArrayList<>();
-
-    public Client(ClientCreateRequest client){
-        this.name = client.name();
-        this.city = client.city();
-        this.state = client.state();
-        this.contact = client.contact();
-        this.actualVersion.getId();
-    }
-
-    public Client(ClientUpdateRequest clientUp){
-        this.contact = clientUp.contact();
-        this.actualVersion = clientUp.actualVersion();
-    }
-
 
 }

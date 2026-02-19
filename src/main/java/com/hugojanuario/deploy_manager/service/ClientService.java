@@ -3,6 +3,7 @@ package com.hugojanuario.deploy_manager.service;
 import com.hugojanuario.deploy_manager.domain.client.Client;
 import com.hugojanuario.deploy_manager.domain.client.dto.ClientCreateRequest;
 import com.hugojanuario.deploy_manager.domain.client.dto.ClientResponse;
+import com.hugojanuario.deploy_manager.domain.client.dto.ClientUpdateRequest;
 import com.hugojanuario.deploy_manager.domain.version.Version;
 import com.hugojanuario.deploy_manager.repository.ClientRepository;
 import com.hugojanuario.deploy_manager.repository.VersionRepository;
@@ -48,5 +49,27 @@ public class ClientService {
                 .orElseThrow(() -> new RuntimeException("Client not found"));
 
         return new ClientResponse(find);
+    }
+
+    public ClientResponse updateClient(UUID id, ClientUpdateRequest request) {
+
+        Client client = clientRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Client not found"));
+
+        if (request.contact() != null) {
+            client.setContact(request.contact());
+        }
+
+        if (request.actualVersion() != null) {
+            Version version = versionRepository.findById(request.actualVersion().getId())
+                    .orElseThrow(() -> new RuntimeException("Version not found"));
+
+            client.setActualVersion(version);
+        }
+
+        Client up = clientRepository.save(client);
+
+        return new ClientResponse(up);
+
     }
 }
