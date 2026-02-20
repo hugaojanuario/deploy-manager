@@ -24,7 +24,7 @@ public class VersionController {
     public ResponseEntity createdVersion (@RequestBody @Valid VersionCreateRequest versionCreateRequest, UriComponentsBuilder uriBuilder){
         var newVersion = versionService.createVersion(versionCreateRequest);
 
-        var uri = uriBuilder.path("/apí/version/{id}").buildAndExpand(newVersion.id()).toUri();
+        var uri = uriBuilder.path("/api/version/{id}").buildAndExpand(newVersion.id()).toUri();
 
         return ResponseEntity.created(uri).body(newVersion);
     }
