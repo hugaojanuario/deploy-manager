@@ -1,10 +1,3 @@
-Esse é um projeto fantástico! A estrutura está muito bem pensada, resolvendo um problema real e aplicando excelentes práticas de mercado, como segurança com AES/BCrypt e o uso profissional de Flyway e Docker que você destacou.
-
-Aqui está o código Markdown consolidado, formatado e corrigido (ajustei alguns blocos de código que estavam abertos na sua versão original).
-
-Você pode copiar o conteúdo abaixo e colar diretamente no seu arquivo README.md:
-
-Markdown
 # 🚀 Deploy Manager API
 
 API REST desenvolvida para gerenciar implantações de sistemas, controle de versões e conexões remotas de clientes (serventias).
