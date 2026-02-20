@@ -47,4 +47,10 @@ public class VersionController {
         return ResponseEntity.ok().body(update);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity ddeleteVersion(@PathVariable UUID id){
+        versionService.deleteVersion(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
