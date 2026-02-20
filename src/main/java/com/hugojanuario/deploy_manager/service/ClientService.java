@@ -29,7 +29,7 @@ public class ClientService {
                 .orElseThrow(() -> new RuntimeException("Version not found"));
 
         Client client = new Client();
-        client.setActivate(true);
+        client.setActive(true);
         client.setName(clientCreateRequest.name());
         client.setCity(clientCreateRequest.city());
         client.setState(clientCreateRequest.state());
@@ -42,7 +42,7 @@ public class ClientService {
     }
 
     public Page<ClientResponse> findAllClients(Pageable pageable){
-        return clientRepository.findByActivateTrue(pageable).map(ClientResponse::new);
+        return clientRepository.findByActiveTrue(pageable).map(ClientResponse::new);
     }
 
     public ClientResponse findByIdClient(UUID id){
@@ -73,7 +73,7 @@ public class ClientService {
         Client client = clientRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Client not found"));
 
-        client.setActivate(false);
+        client.setActive(false);
         clientRepository.save(client);
     }
 }

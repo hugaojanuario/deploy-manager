@@ -34,6 +34,6 @@ public class Version {
     @Column(updatable = false, nullable = false)
     private LocalDateTime createdAt;
 
-    private boolean activate;
+    private boolean active;
 
 }
