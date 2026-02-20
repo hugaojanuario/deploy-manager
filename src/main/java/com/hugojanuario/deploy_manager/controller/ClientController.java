@@ -42,4 +42,10 @@ public class ClientController {
         var upClient = clientService.updateClient(id, clientUpdateRequest);
         return ResponseEntity.ok(upClient);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteClientById(@PathVariable UUID id){
+        clientService.deleteCLient(id);
+        return ResponseEntity.noContent().build();
+    }
 }

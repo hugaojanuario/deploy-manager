@@ -52,10 +52,8 @@ public class ClientService {
     }
 
     public ClientResponse updateClient(UUID id, ClientUpdateRequest request) {
-
         Client client = clientRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Client not found"));
-
         if (request.contact() != null) {
             client.setContact(request.contact());
         }
@@ -63,13 +61,17 @@ public class ClientService {
         if (request.actualVersion() != null) {
             Version version = versionRepository.findById(request.actualVersion().getId())
                     .orElseThrow(() -> new RuntimeException("Version not found"));
-
             client.setActualVersion(version);
         }
 
         Client up = clientRepository.save(client);
-
         return new ClientResponse(up);
+    }
 
+    public void deleteCLient(UUID id){
+        clientRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Client not found"));
+
+        clientRepository.deleteById(id);
     }
 }
