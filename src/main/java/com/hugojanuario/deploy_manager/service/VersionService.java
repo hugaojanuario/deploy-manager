@@ -52,4 +52,12 @@ public class VersionService {
         Version up = versionRepository.save(version);
         return new VersionResponse(up);
     }
+
+    public void deleteVersion(UUID id){
+        Version version = versionRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Client not found"));
+
+        version.setActive(false);
+        versionRepository.save(version);
+    }
 }
