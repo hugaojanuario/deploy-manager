@@ -9,5 +9,7 @@ CREATE TABLE users (
 
                        role_type VARCHAR(50) NOT NULL,
 
+                       active BOOLEAN NOT NULL DEFAULT TRUE,
+
                        created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );

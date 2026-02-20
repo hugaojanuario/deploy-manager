@@ -40,6 +40,8 @@ public class Client {
     @Column(updatable = false, nullable = false)
     private LocalDateTime createdAt;
 
+    private boolean activate;
+
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Connection> connections = new ArrayList<>();
 

@@ -3,6 +3,7 @@ CREATE TABLE clients (
                          name VARCHAR(255) NOT NULL,
                          city VARCHAR(150),
                          state VARCHAR(100),
+                         active BOOLEAN NOT NULL DEFAULT TRUE,
                          contact VARCHAR(255),
 
                          version_id UUID NOT NULL,
