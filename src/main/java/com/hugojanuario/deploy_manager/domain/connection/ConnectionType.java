@@ -1,4 +1,4 @@
-package com.hugojanuario.deploy_manager.domain.conection;
+package com.hugojanuario.deploy_manager.domain.connection;
 
 public enum ConnectionType {
     TEAMVIEWER,

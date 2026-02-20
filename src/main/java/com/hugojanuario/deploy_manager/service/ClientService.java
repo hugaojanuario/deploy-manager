@@ -35,6 +35,10 @@ public class ClientService {
         client.setState(clientCreateRequest.state());
         client.setContact(clientCreateRequest.contact());
         client.setActualVersion(version);
+        client.setUserMachineServer(clientCreateRequest.userMachineServer());
+        client.setPasswordMachineServer(clientCreateRequest.passwordMachineServer());
+        client.setUserDb(clientCreateRequest.userDb());
+        client.setPasswordDb(clientCreateRequest.passwordDb());
 
         Client saved = clientRepository.save(client);
 
@@ -52,9 +56,11 @@ public class ClientService {
         return new ClientResponse(find);
     }
 
+    @Transactional
     public ClientResponse updateClient(UUID id, ClientUpdateRequest request) {
         Client client = clientRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Client not found"));
+
         if (request.contact() != null) {
             client.setContact(request.contact());
         }
@@ -63,6 +69,22 @@ public class ClientService {
             Version version = versionRepository.findById(request.actualVersion().getId())
                     .orElseThrow(() -> new RuntimeException("Version not found"));
             client.setActualVersion(version);
+        }
+
+        if (request.userMachineServer() != null){
+            client.setUserMachineServer(request.userMachineServer());
+        }
+
+        if (request.passwordMachineServer() != null){
+            client.setPasswordMachineServer(request.passwordMachineServer());
+        }
+
+        if (request.userDb() != null){
+            client.setUserDb(request.userDb());
+        }
+
+        if (request.passwordDb() != null){
+            client.setPasswordDb(request.passwordDb());
         }
 
         Client up = clientRepository.save(client);

@@ -7,12 +7,6 @@ CREATE TABLE connections (
                              id_remote_connection VARCHAR(255),
                              password_remote_connection VARCHAR(255),
 
-                             user_machine VARCHAR(255),
-                             password_machine VARCHAR(255),
-
-                             user_db VARCHAR(255),
-                             password_db VARCHAR(255),
-
                              created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
                              CONSTRAINT fk_connection_client

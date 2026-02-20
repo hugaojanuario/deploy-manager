@@ -1,6 +1,6 @@
 package com.hugojanuario.deploy_manager.domain.client;
 
-import com.hugojanuario.deploy_manager.domain.conection.Connection;
+import com.hugojanuario.deploy_manager.domain.connection.Connection;
 import com.hugojanuario.deploy_manager.domain.version.Version;
 import jakarta.persistence.*;
 
@@ -35,6 +35,12 @@ public class Client {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "version_id", nullable = false, foreignKey = @ForeignKey(name = "fk_client_version"))
     private Version actualVersion;
+
+    private String userMachineServer;
+    private String passwordMachineServer;
+
+    private String userDb;
+    private String passwordDb;
 
     @CreationTimestamp
     @Column(updatable = false, nullable = false)

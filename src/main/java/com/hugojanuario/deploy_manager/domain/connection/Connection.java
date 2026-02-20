@@ -1,4 +1,4 @@
-package com.hugojanuario.deploy_manager.domain.conection;
+package com.hugojanuario.deploy_manager.domain.connection;
 
 import com.hugojanuario.deploy_manager.domain.client.Client;
 import jakarta.persistence.*;
@@ -32,12 +32,6 @@ public class Connection {
 
     private String idRemoteConnection;
     private String passwordRemoteConnection;
-
-    private String userMachine;
-    private String passwordMachine;
-
-    private String userDb;
-    private String passwordDb;
 
     @CreationTimestamp
     @Column(updatable = false, nullable = false)

@@ -9,6 +9,10 @@ public record ClientCreateRequest(
         String city,
         String state,
         String contact,
-        UUID versionId
+        UUID versionId,
+        String userMachineServer,
+        String passwordMachineServer,
+        String userDb,
+        String passwordDb
 ) {
 }

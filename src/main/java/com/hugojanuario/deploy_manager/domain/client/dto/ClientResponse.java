@@ -12,7 +12,12 @@ public record ClientResponse(
         String state,
         String contact,
         UUID versionId,
-        String numberVersion
+        String numberVersion,
+        String userMachineServer,
+        String passwordMachineServer,
+        String userDb,
+        String passwordDb
+
 ) {
     public ClientResponse(Client client){
         this(
@@ -22,7 +27,11 @@ public record ClientResponse(
                 client.getState(),
                 client.getContact(),
                 client.getActualVersion().getId(),
-                client.getActualVersion().getNumberVersion()
+                client.getActualVersion().getNumberVersion(),
+                client.getUserMachineServer(),
+                client.getPasswordMachineServer(),
+                client.getUserDb(),
+                client.getPasswordDb()
         );
     }
 }
