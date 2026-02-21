@@ -36,7 +36,7 @@ public class ClientService {
         client.setContact(clientCreateRequest.contact());
         client.setActualVersion(version);
         client.setUserMachineServer(clientCreateRequest.userMachineServer());
-        client.setPasswordMachineServer(clientCreateRequest.passwordMachineServer());
+        client.setPasswordMachineServer(clientCreateRequest.passwordMachineServer() );
         client.setUserDb(clientCreateRequest.userDb());
         client.setPasswordDb(clientCreateRequest.passwordDb());
 
