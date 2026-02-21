@@ -1,12 +1,8 @@
 package com.hugojanuario.deploy_manager.domain.connection.dto;
 
-import com.hugojanuario.deploy_manager.domain.connection.Connection;
 import com.hugojanuario.deploy_manager.domain.connection.ConnectionType;
 
-import java.util.UUID;
-
-public record ConnectionCreateRequest(
-        UUID clientId,
+public record ConnectionUpdateRequest(
         ConnectionType connectionType,
         String idRemoteConnection,
         String passwordRemoteConnection
