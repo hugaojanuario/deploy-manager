@@ -27,17 +27,25 @@ O projeto segue uma arquitetura em camadas e organização orientada a domínio:
 **Organização dos pacotes:**
 ```text
 domain
-├── serventia
+├── client
+    ├── dto
 ├── version
-├── conexao
-├── usuario
-security
-config
-dto
-exception
+    ├── dto
+├── connection
+    ├── dto
+├── user
+    ├── dto
+controller
+repository
+service
 ```
 
+## Documentação da API - Swagger:
+ 1- sobe a  aplicação e acesse: http://localhost:8080/swagger-ui/index.html
+
 🧱 Modelo de Dados
+
+
 📌 Serventia
 id (UUID)
 
@@ -161,6 +169,7 @@ Nota: O token retornado deve ser enviado no header de todas as requisições sub
 Authorization: Bearer {token}
 
 📡 Principais Endpoints
+
 Serventias
 
 POST /serventias
