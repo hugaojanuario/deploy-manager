@@ -7,14 +7,12 @@ import java.util.UUID;
 
 public record UserResponse(
         UUID id,
-        String nameUser,
         String email,
         RoleType roleType
 ) {
     public UserResponse(User user){
         this(
                 user.getId(),
-                user.getUsername(),
                 user.getEmail(),
                 user.getRoleType()
         );

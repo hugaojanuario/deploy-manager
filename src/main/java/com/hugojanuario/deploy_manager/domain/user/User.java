@@ -26,9 +26,6 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(nullable = false)
-    private String username;
-
     @Column(unique = true, nullable = false)
     private String email;
 
@@ -47,12 +44,12 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        return List.of(new SimpleGrantedAuthority("ROLE_" + roleType.name()));
     }
 
     @Override
     public String getUsername() {
-        return nameUser;
+        return email;
     }
 
     @Override

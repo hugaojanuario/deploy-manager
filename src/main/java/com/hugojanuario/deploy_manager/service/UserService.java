@@ -20,7 +20,6 @@ public class UserService {
     public UserResponse createUser(UserCreateRequest userCreateRequest){
         User user = new User();
         user.setActive(true);
-        user.setNameUser(userCreateRequest.nameUser());
         user.setEmail(userCreateRequest.email());
         user.setPassword(userCreateRequest.password());
         user.setRoleType(userCreateRequest.roleType());

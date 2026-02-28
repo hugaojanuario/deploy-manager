@@ -7,8 +7,6 @@ import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Email;
 
 public record UserCreateRequest(
-        String nameUser,
-
         @Email
         String email,
         String password,
