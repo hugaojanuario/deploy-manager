@@ -14,7 +14,7 @@ public record UserResponse(
     public UserResponse(User user){
         this(
                 user.getId(),
-                user.getNameUser(),
+                user.getUsername(),
                 user.getEmail(),
                 user.getRoleType()
         );
