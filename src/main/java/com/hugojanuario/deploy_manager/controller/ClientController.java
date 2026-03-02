@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.UUID;
 
@@ -20,13 +21,16 @@ public class ClientController {
     private final ClientService clientService;
 
     @PostMapping
-    public ResponseEntity createdClient (@RequestBody @Valid ClientCreateRequest clientCreateRequest){
+    public ResponseEntity createdClient (@RequestBody @Valid ClientCreateRequest clientCreateRequest, UriComponentsBuilder uriBuilder){
+
         var newClient = clientService.createClient(clientCreateRequest);
-        return ResponseEntity.ok().body(newClient);
+        var uri = uriBuilder.path("/client/{id}").buildAndExpand(newClient.id()).toUri();
+        return ResponseEntity.created(uri).body(newClient);
     }
 
     @GetMapping
     public ResponseEntity findAllClient(@PageableDefault(size = 2) Pageable page){
+
         var findClient = clientService.findAllClients(page);
         return ResponseEntity.ok(findClient);
     }
