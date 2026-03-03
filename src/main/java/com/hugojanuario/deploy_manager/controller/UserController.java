@@ -18,7 +18,6 @@ public class UserController {
 
     private final UserService userService;
 
-
     @PostMapping
     public ResponseEntity createUser(@RequestBody UserCreateRequest userCreateRequest){
         var newUser = userService.createUser(userCreateRequest);

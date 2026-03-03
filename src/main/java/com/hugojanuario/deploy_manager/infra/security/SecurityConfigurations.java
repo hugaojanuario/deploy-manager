@@ -29,6 +29,10 @@ public class SecurityConfigurations {
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(req -> {
                     req.requestMatchers("/login").permitAll();
+                    req.requestMatchers("/swagger-ui/**").permitAll();
+                    req.requestMatchers("/v3/api-docs/**").permitAll();
+                    req.requestMatchers("/swagger-resources/**").permitAll();
+                    req.requestMatchers("/webjars/**").permitAll();
                     req.anyRequest().authenticated();
 
                 })

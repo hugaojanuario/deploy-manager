@@ -15,7 +15,6 @@ import java.util.UUID;
 public class ConnectionController {
     private final ConnectionService connectionService;
 
-
     @PostMapping
     public ResponseEntity createConnection(@RequestBody ConnectionCreateRequest connectionCreateRequest) {
         var newConnection = connectionService.createConnection(connectionCreateRequest);
