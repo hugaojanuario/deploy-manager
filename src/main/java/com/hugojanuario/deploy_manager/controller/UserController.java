@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.UUID;
 
@@ -19,10 +20,11 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public ResponseEntity createUser(@RequestBody UserCreateRequest userCreateRequest){
+    public ResponseEntity createUser(@RequestBody UserCreateRequest userCreateRequest, UriComponentsBuilder uriComponentsBuilder){
         var newUser = userService.createUser(userCreateRequest);
+        var uri = uriComponentsBuilder.path("/api/user/{id}").buildAndExpand(newUser.id()).toUri();
 
-        return ResponseEntity.ok().body(newUser);
+        return ResponseEntity.created(uri).body(newUser);
     }
 
     @GetMapping
